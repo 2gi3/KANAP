@@ -1,0 +1,5 @@
+-set up the server
+-test the apis
+-plan the code design
+-implement the code
+-test

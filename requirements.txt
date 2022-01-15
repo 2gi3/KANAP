@@ -1,0 +1,15 @@
+-4 html pages.
+-A page to display all products.
+-A page to display single products with:
+     name, description, price in dollars, personalisation.
+     a button to add product to cart
+-A page to display cart with:
+    product summary
+    product total
+    a submit order button
+-A pages to display order confirmation with:
+    a contact object with a field required
+    a product arrey with product ids
+ -Ensure data validation before post with:
+    all contact field required
+    an arrey of product ids           
