@@ -24,6 +24,22 @@ fetch(`http://localhost:3000/api/products/${id} `)
 
             productTitle.innerHTML =product.name;
 
+            let productPrice = document.getElementById("price");
+
+            productPrice.innerHTML = product.price;
+
+            let productDescription = document.getElementById("description");
+
+            productDescription.innerHTML = product.description;
+
+            let colorsDropdown = document.getElementById("colors");
+
+            product.colors.forEach(element => {
+
+                colorsDropdown.innerHTML +=`<option value="${element}">${element}</option>`;
+                
+            });
+
             // loop through the array to build the html to be added to our dom
             // data.forEach(product =>{
             //     productHTML +=` 
