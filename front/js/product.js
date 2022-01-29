@@ -59,7 +59,6 @@ fetch(`http://localhost:3000/api/products/${id} `)
                     
                 }else{
                     cart.push( { _id:id, quantity:parseInt(quantity), color:color})
-                    
                 }
                 localStorage.setItem("cart", JSON.stringify(cart));
             }          
