@@ -38,7 +38,7 @@ fetch(`http://localhost:3000/api/products/${id} `)
         let color = document.getElementById("colors").value;
         let cart = localStorage.getItem("cart");
         // check if color has been selected
-        if (color -""){
+        if (color =""){
             alert("please select a color")
         } else {
             let products = [];
@@ -59,8 +59,8 @@ fetch(`http://localhost:3000/api/products/${id} `)
                     }else{ 
                         // if color is not the same then add new object to array
                         
-                        // cart.push( { _id:id, quantity:1, color:color});
-                        // localStorage.setItem(cart, JSON.stringify(cart));
+                        cart.push( { _id:id, quantity:1, color:color});
+                        localStorage.setItem(cart, JSON.stringify(cart));
                     } 
                 }
 
