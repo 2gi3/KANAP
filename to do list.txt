@@ -1,5 +1,13 @@
--set up the server
--test the apis
--plan the code design
--implement the code
--test
+● From a technical perspective the cart can be made as an array
+containing three things: - the product ID, - the quantity of the
+product, - the colour of the product.
+● You must use LocalStorage to access this array from the product
+page.
+● When you add a product to the cart for the first time, add a new
+element to the array.
+● When you add the same product to the cart (the same product ID
+and the same colour), increase the quantity of the product in the
+array.
+⚠️ Issues to be aware of:
+● In LocalStorage take care to avoid having several of the same
+elements for no reason
