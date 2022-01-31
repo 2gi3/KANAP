@@ -7,10 +7,13 @@ const urlParams = new URLSearchParams(queryString);
 
 const id = urlParams.get('id')
 
+
 fetch(`http://localhost:3000/api/products/${id} `)
     .then(response => {
         response.json().then(product => {
-            console.log(product);
+            // console.log(product.price);
+
+            price = product.price
 
             // tag the product div
             let imgDiv = document.getElementsByClassName('item__img')[0];
@@ -45,7 +48,7 @@ fetch(`http://localhost:3000/api/products/${id} `)
             let products = [];
             // If a cart doesn't exist push object to array then store array in local storage
             if (cart == null){
-                products.push( { _id:id, quantity:parseInt(quantity), color:color } )
+                products.push( { _id:id, quantity:parseInt(quantity), color:color, price:price*parseInt(quantity) } )
                 localStorage.setItem("cart", JSON.stringify(products))
             }else{
                 // if there is already an object in the array then find if it hase same id
@@ -56,9 +59,10 @@ fetch(`http://localhost:3000/api/products/${id} `)
                     // if color is the same then add 1 to quantity
                     
                         cart[index].quantity += parseInt(quantity); 
+                        cart[index].price += parseInt(price)*parseInt(quantity);
                     
                 }else{
-                    cart.push( { _id:id, quantity:parseInt(quantity), color:color})
+                    cart.push( { _id:id, quantity:parseInt(quantity), color:color, price:price})
                 }
                 localStorage.setItem("cart", JSON.stringify(cart));
             }          

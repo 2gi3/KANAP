@@ -15,14 +15,14 @@ products.forEach(product => {
             </div>
             <div class="cart__item__content">
               <div class="cart__item__content__description">
-                <h2>Name of the product</h2>
-                <p>Green</p>
-                <p>€42.00</p>
+                <h2>${p.name}</h2>
+                <p>${product.color} </p>
+                <p> &euro; ${p.price}</p>
               </div>
               <div class="cart__item__content__settings">
                 <div class="cart__item__content__settings__quantity">
-                  <p>Qté : </p>
-                  <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="42">
+                  <p>Q té :${product.quantity} </p>
+                  <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${product.quantity}">
                 </div>
                 <div class="cart__item__content__settings__delete">
                   <p class="deleteItem">Delete</p>
@@ -31,9 +31,31 @@ products.forEach(product => {
             </div>
           </article>`;
           cart.innerHTML += cartItems;
+
         })
-    });
-
-
-    
+    });   
 });
+
+let cart_quantity = 0;
+
+for(let i = 0; i < products.length; i++) {
+  // console.log(cart_quantity);
+  cart_quantity = parseInt(products[i].quantity) + cart_quantity;
+};
+
+console.log(cart_quantity);
+
+let totalArticles = document.getElementById("totalQuantity");
+totalArticles.innerHTML = cart_quantity;
+
+let cart_price = 0;
+
+for(let i = 0; i < products.length; i++) {
+  // console.log(cart_quantity);
+  cart_price = parseInt(products[i].price) + cart_price;
+};
+
+console.log(cart_price);
+
+let totalPrice = document.getElementById("totalPrice");
+totalPrice.innerHTML = cart_price;
