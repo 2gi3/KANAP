@@ -18,12 +18,13 @@ const loadCart = () => {
               <div class="cart__item__content__description">
                 <h2>${p.name}</h2>
                 <p>${product.color} </p>
-                <p> &euro; ${p.price}</p>
+                <p> &euro; (${p.price})* ${product.quantity}</p>
+                <p> &euro;${product.price}</p>
               </div>
               <div class="cart__item__content__settings">
                 <div class="cart__item__content__settings__quantity">
                   <p>Q té:</p>
-                  <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${product.quantity}">
+                  <input id='${p._id}-${product.color}' type="number" class="itemQuantity" onchange="updateCart('${p._id}','${product.color}')" name="itemQuantity" min="1" max="100" value="${product.quantity}">
                 </div>
                 <div class="cart__item__content__settings__delete">
                   <p class="deleteItem" onclick="myFunction('${p._id}','${product.color}')" >Delete</p>
@@ -41,18 +42,6 @@ const loadCart = () => {
 
 loadCart();
 
-// attempt to make a function for totalPrice and totalQuantity
-// let tally = (x) => {
-// let a = 0;
-// for (let i = 0; i < products.length; i++) {
-//   a = parseInt(products[i].quantity) + a;
-// };
-// let b = document.getElementById(x);
-// b.innerHTML = a;
-// }
-
-// tally(totalQuantity);
-
 
 const calculateTotal = () => {
   let products = JSON.parse(localStorage.getItem("cart"));
@@ -60,7 +49,7 @@ const calculateTotal = () => {
   let cart_quantity = 0;
   for (let i = 0; i < products.length; i++) {
     // console.log(cart_quantity);
-    cart_quantity = parseInt(products[i].quantity) + cart_quantity;
+    cart_quantity += parseInt(products[i].quantity);
   };
   let totalArticles = document.getElementById("totalQuantity");
   totalArticles.innerHTML = cart_quantity;
@@ -69,7 +58,7 @@ const calculateTotal = () => {
   let cart_price = 0;
   for (let i = 0; i < products.length; i++) {
     // console.log(cart_quantity);
-    cart_price = parseInt(products[i].price) + cart_price;
+    cart_price += parseInt(products[i].price);
   };
   let totalPrice = document.getElementById("totalPrice");
   totalPrice.innerHTML = cart_price;
@@ -81,7 +70,7 @@ let myFunction = (id, color) => {
   // retreive local storage array
   let products = JSON.parse(localStorage.getItem("cart"));
   // target id && color of item to be deleted
-  let index = products.find(entry => entry._id == id && entry.color==color);
+  let index = products.findIndex(entry => entry._id === id && entry.color===color);
   // remove item from array
   products.splice(index, 1);
 
@@ -94,6 +83,25 @@ let myFunction = (id, color) => {
   loadCart();
   calculateTotal();
 }
+
+let updateCart = (id, color) => {
+  let quantity = parseInt(document.getElementById(`${id}-${color}`).value);
+
+  // retrieve the products array
+  let products = JSON.parse(localStorage.getItem("cart"));
+  // find the index of the product
+  let index = products.findIndex(entry => entry._id == id && entry.color==color);
+  // update the quantity
+  products[index].quantity = quantity;
+  // update local storage
+  localStorage.setItem('cart', JSON.stringify(products));
+  // clear the cart display
+  document.getElementById("cart__items").innerHTML = "";
+  // reload the cart and total
+  loadCart();
+  calculateTotal();
+  
+};
 
 
 

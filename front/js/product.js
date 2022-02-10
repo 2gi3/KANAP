@@ -62,7 +62,7 @@ fetch(`http://localhost:3000/api/products/${id} `)
                         cart[index].price += parseInt(price)*parseInt(quantity);
                     
                 }else{
-                    cart.push( { _id:id, quantity:parseInt(quantity), color:color, price:price})
+                    cart.push( { _id:id, quantity:parseInt(quantity), color:color, price:parseInt(price)*parseInt(quantity)})
                 }
                 localStorage.setItem("cart", JSON.stringify(cart));
             }          
