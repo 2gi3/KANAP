@@ -86,13 +86,13 @@ let myFunction = (id, color) => {
 
 let updateCart = (id, color) => {
   let quantity = parseInt(document.getElementById(`${id}-${color}`).value);
-
   // retrieve the products array
   let products = JSON.parse(localStorage.getItem("cart"));
   // find the index of the product
   let index = products.findIndex(entry => entry._id == id && entry.color==color);
   // update the quantity
   products[index].quantity = quantity;
+  products[index].price = parseInt(products[index].uPrice)*quantity;
   // update local storage
   localStorage.setItem('cart', JSON.stringify(products));
   // clear the cart display

@@ -48,7 +48,7 @@ fetch(`http://localhost:3000/api/products/${id} `)
             let products = [];
             // If a cart doesn't exist push object to array then store array in local storage
             if (cart == null){
-                products.push( { _id:id, quantity:parseInt(quantity), color:color, price:price*parseInt(quantity) } )
+                products.push( { _id:id, quantity:parseInt(quantity), color:color, price:price*parseInt(quantity),uPrice:price } )
                 localStorage.setItem("cart", JSON.stringify(products))
             }else{
                 // if there is already an object in the array then find if it hase same id
@@ -60,9 +60,10 @@ fetch(`http://localhost:3000/api/products/${id} `)
                     
                         cart[index].quantity += parseInt(quantity); 
                         cart[index].price += parseInt(price)*parseInt(quantity);
+                        cart[index].uPrice = price;
                     
                 }else{
-                    cart.push( { _id:id, quantity:parseInt(quantity), color:color, price:parseInt(price)*parseInt(quantity)})
+                    cart.push( { _id:id, quantity:parseInt(quantity), color:color, price:parseInt(price)*parseInt(quantity), uPrice:price})
                 }
                 localStorage.setItem("cart", JSON.stringify(cart));
             }          
