@@ -105,3 +105,59 @@ let updateCart = (id, color) => {
 
 
 
+
+const validateData = () =>{
+  // contact inputs
+  let firstName = document.getElementById("firstName").value;
+  let name = document.getElementById("lastName").value;
+  let address = document.getElementById("address").value;
+  let city = document.getElementById("city").value;
+  let email = document.getElementById("email").value;
+  // ensure all fields are filled on.
+  if(firstName.length =="" || name.length =="" || address.length =="" ||  city.length =="" ||  email.length =="" ){
+    return "empty";
+    }else{
+      // verify the lenghyh
+      if(firstName.length <3 || name.length <3 || address.length <3 ||  city.length <3 ||  email.length <3 )
+        return "length";
+    }
+      // verify email
+      const re = /\S+@\S+\.\S+/g;
+      if(!re.test(email)){
+        return "email"
+      }else{
+        return "ok";
+      }
+}
+
+// function that postes the order
+const postOrder = ()=>{
+  let firstName = document.getElementById("firstName").value;
+let name = document.getElementById("lastName").value;
+let address = document.getElementById("address").value;
+let city = document.getElementById("city").value;
+let email = document.getElementById("email").value;
+
+  contact = {firstName:firstName, lastName:name,address:address,city:city,email:email}
+  console.log(contact);
+  switch (validateData()){
+    case "empty":
+    alert ('please provide all reselts');
+    break;
+  case "length" :
+  alert ("please meke every imput at least 3 letters");
+  break;
+  case 'email':
+    alert ('please enter a valid enail');
+  break;
+  default:
+    // post;
+    break;
+  }
+
+};
+
+let orderBtn = document.getElementById('order');
+orderBtn.addEventListener('click', (e)=>{
+  postOrder();
+});
