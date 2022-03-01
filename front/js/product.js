@@ -1,12 +1,11 @@
 // load a single product from http://localhost:3000/api/products/id api
 
-// retreive the product id from the url 
+// retrieve the product id from the url 
 const queryString = window.location.search;
 
 const urlParams = new URLSearchParams(queryString);
 
 const id = urlParams.get('id')
-
 
 fetch(`http://localhost:3000/api/products/${id} `)
     .then(response => {
@@ -35,7 +34,6 @@ fetch(`http://localhost:3000/api/products/${id} `)
         })
     });
 
-
     document.getElementById("addToCart").addEventListener("click", ()  => { 
 
         let cart = localStorage.getItem("cart");
@@ -48,7 +46,7 @@ fetch(`http://localhost:3000/api/products/${id} `)
             let products = [];
             // If a cart doesn't exist push object to array then store array in local storage
             if (cart == null){
-                products.push( { _id:id, quantity:parseInt(quantity), color:color, price:price*parseInt(quantity),uPrice:price } )
+                products.push( { _id:id, quantity:parseInt(quantity), color:color } )
                 localStorage.setItem("cart", JSON.stringify(products))
             }else{
                 // if there is already an object in the array then find if it hase same id
@@ -59,11 +57,10 @@ fetch(`http://localhost:3000/api/products/${id} `)
                     // if color is the same then add 1 to quantity
                     
                         cart[index].quantity += parseInt(quantity); 
-                        cart[index].price += parseInt(price)*parseInt(quantity);
-                        cart[index].uPrice = price;
+                      
                     
                 }else{
-                    cart.push( { _id:id, quantity:parseInt(quantity), color:color, price:parseInt(price)*parseInt(quantity), uPrice:price})
+                    cart.push( { _id:id, quantity:parseInt(quantity), color:color})
                 }
                 localStorage.setItem("cart", JSON.stringify(cart));
             }          
@@ -71,5 +68,6 @@ fetch(`http://localhost:3000/api/products/${id} `)
         }
 
     });
+
 
 
