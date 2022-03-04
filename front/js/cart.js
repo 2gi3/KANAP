@@ -128,8 +128,23 @@ const validateInput = (Input) =>{
   let erroMsg = document.getElementById(`${Input}ErrorMsg`);
   erroMsg.innerHTML= "";
   let output = true;
+  // check that first name is only letters
+  const nameValue = document.getElementById(`firstName`).value;
+  const firstNameErrorMsg= document.getElementById('firstNameErrorMsg');
+  if (/[^a-zA-Z]/.test(nameValue)){
+    firstNameErrorMsg.innerHTML =`Please kindly provide a first name that contains only letters`;
+    output= false;
+  }
+  // check that last name has only letters
+  const lastNameValue = document.getElementById(`lastName`).value;
+  const lastNameErrorMsg= document.getElementById('lastNameErrorMsg');
+  if (/[^a-zA-Z]/.test(lastNameValue)){
+    lastNameErrorMsg.innerHTML =`Please kindly provide a last name that contains only letters`;
+    output= false;
+  }
+
   //Validate empty value
-  if(value==""){
+  if(value=="" ){
     erroMsg.innerHTML =`Please kindly provide the ${Input}`;
     output= false;
   }
