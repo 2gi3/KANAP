@@ -22,7 +22,7 @@ const loadCart = () => {
     products.forEach(product => {
 
 
-      fetch(`http://localhost:3000/api/products/${product._id} `)
+      fetch(`https://murmuring-basin-08429.herokuapp.com/api/products/${product._id} `)
         .then(response => {
           response.json().then(p => {
             let cartItems = "";
@@ -217,7 +217,7 @@ let email = document.getElementById("email").value;
       };
 
 
-    fetch('http://localhost:3000/api/products/order', options)
+    fetch('https://murmuring-basin-08429.herokuapp.com/api/products/order', options)
     .then(data => {
         if (!data.ok) {
           throw Error(data.status);

@@ -1,6 +1,6 @@
 // load all products from http://localhost:3000/api/products  api
 
-fetch('http://localhost:3000/api/products')
+fetch('https://murmuring-basin-08429.herokuapp.com/api/products')
     .then(response => {
         response.json().then(data => {
             console.log(data);

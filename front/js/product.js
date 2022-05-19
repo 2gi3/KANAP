@@ -7,7 +7,7 @@ const urlParams = new URLSearchParams(queryString);
 
 const id = urlParams.get('id')
 
-fetch(`http://localhost:3000/api/products/${id} `)
+fetch(`https://murmuring-basin-08429.herokuapp.com/api/products/${id} `)
     .then(response => {
         response.json().then(product => {
             // console.log(product.price);
