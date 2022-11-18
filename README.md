@@ -13,3 +13,9 @@ can then run the server with `node server`.
 The server should run on `localhost` with default port `3000`. If the
 server runs on another port for any reason, this is printed to the
 console when the server starts, e.g. `Listening on port 3001`.
+
+For this project i wrote the 3 files located in the (/front/js directory) my main responsibilities wete to:
+-Fetch data to dynamically populate the homepage(index.js) and the product page(product.js) 
+-create a shopping basket and save the data in local storage(cart.js)
+-create a check out form that uses RegEx to validate the customer's inputs and generates an order number.
+I have deployed this project at: https://p5ocgiuseppeippolitolight.netlify.app/
